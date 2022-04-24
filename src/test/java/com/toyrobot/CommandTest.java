@@ -30,7 +30,8 @@ public class CommandTest
      * Rigourous Test :-)
      */
     public void testPlace() throws CommandException {
-        Command command = new Command("PLACE 2,2,EAST");
+        Command command = new Command();
+        command.parseCommand("PLACE 2,2,EAST");
         assertEquals(command.type, CommandType.PLACE);
         assertEquals(command.params.length, 3);
         assertEquals(command.params[0], 2);
@@ -39,27 +40,32 @@ public class CommandTest
     }
 
     public void testMove() throws CommandException {
-        Command command = new Command("MOVE");
+        Command command = new Command();
+        command.parseCommand("MOVE");
         assertEquals(command.type, CommandType.MOVE);
     }
 
     public void testLeft() throws CommandException {
-        Command command = new Command("LEFT");
+        Command command = new Command();
+        command.parseCommand("LEFT");
         assertEquals(command.type, CommandType.LEFT);
     }
 
     public void testRight() throws CommandException {
-        Command command = new Command("RIGHT");
+        Command command = new Command();
+        command.parseCommand("RIGHT");
         assertEquals(command.type, CommandType.RIGHT);
     }
 
     public void testReport() throws CommandException {
-        Command command = new Command("REPORT");
+        Command command = new Command();
+        command.parseCommand("REPORT");
         assertEquals(command.type, CommandType.REPORT);
     }
 
     public void testWeirdFormat() throws CommandException {
-        Command command = new Command("pLaCe    7 , -2           ,SoUtH");
+        Command command = new Command();
+        command.parseCommand("pLaCe    7 , -2           ,SoUtH");
         assertEquals(command.type, CommandType.PLACE);
         assertEquals(command.params.length, 3);
         assertEquals(command.params[0], 7);
@@ -69,7 +75,8 @@ public class CommandTest
 
     public void testBadCommand() throws CommandException {
         try {
-            Command command = new Command("BadCommand");
+            Command command = new Command();
+            command.parseCommand("BadCommand");
         } catch (CommandException ex) {
             assertEquals(ex.getMessage(), "FAILED TO CONVERT STRING COMMAND");
         }

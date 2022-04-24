@@ -4,11 +4,36 @@ import com.toyrobot.exception.CommandException;
 
 import java.util.StringTokenizer;
 
-public class Command {
+public class Command implements ICommandSet {
     public CommandType type;
     public Object[] params;
 
-    public Command(String command) throws CommandException {
+    public Position executeCommand(Position position) {
+        switch (this.type) {
+            case PLACE:
+                return new Position((int) params[0], (int) params[1], (Direction) params[2]);
+            case MOVE:
+                if (position == null) return null;
+                position.move();
+                return position;
+            case LEFT:
+                if (position == null) return null;
+                position.turnLeft();
+                return position;
+            case RIGHT:
+                if (position == null) return null;
+                position.turnRight();
+                return position;
+            case REPORT:
+                if (position == null) return null;
+                System.out.printf("%d, %d, %s\n", position.getX(), position.getY(), position.getDirection());
+                return position;
+            default:
+                return position;
+        }
+    }
+
+    public void parseCommand(String command) throws CommandException {
         StringTokenizer stringTokenizer = new StringTokenizer(command, ":, ");
         try {
             this.type = CommandType.valueOf(stringTokenizer.nextToken().toUpperCase());
