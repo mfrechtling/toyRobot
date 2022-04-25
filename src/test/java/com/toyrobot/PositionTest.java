@@ -22,13 +22,54 @@ public class PositionTest
      * @return the suite of tests being tested
      */
     public static Test suite() {
-        return new TestSuite(AppTest.class);
+        return new TestSuite(PositionTest.class);
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp() {
-        assertTrue(true);
+    public void testGetX() {
+        Position position = new Position(2, 4, Direction.SOUTH);
+        assertEquals(position.getX(), 2);
+    }
+
+    public void testGetY() {
+        Position position = new Position(4, 7, Direction.SOUTH);
+        assertEquals(position.getY(), 7);
+    }
+
+    public void testGetDirection() {
+        Position position = new Position(4, 7, Direction.EAST);
+        assertEquals(position.getDirection(), Direction.EAST);
+    }
+
+    public void testTurnLeft() {
+        Position position = new Position(0, 0, Direction.NORTH);
+        position.turnLeft();
+        position.turnLeft();
+        position.turnLeft();
+        position.turnLeft();
+        assertEquals(position.getDirection(), Direction.NORTH);
+    }
+
+    public void testTurnRight() {
+        Position position = new Position(0, 0, Direction.NORTH);
+        position.turnRight();
+        position.turnRight();
+        position.turnRight();
+        position.turnRight();
+        assertEquals(position.getDirection(), Direction.NORTH);
+    }
+
+    public void testMove() {
+        Position position = new Position(0, 0, Direction.NORTH);
+        position.move();
+        position.move();
+        position.move();
+        position.move();
+        position.turnRight();
+        position.move();
+        position.move();
+        position.move();
+        position.move();
+        assertEquals(position.getX(), 4);
+        assertEquals(position.getY(), 4);
     }
 }

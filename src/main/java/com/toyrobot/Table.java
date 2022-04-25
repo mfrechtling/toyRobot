@@ -5,11 +5,13 @@ public class Table {
     public int width;
 
     public Table(int width, int height) {
+        if (width < 0 || height < 0) throw new IllegalArgumentException("Size of table must be greater than zero");
         this.width = width;
         this.height = height;
     }
 
     public Table(int size) {
+        if (size < 0) throw new IllegalArgumentException("Size of table must be greater than zero");
         this.width = size;
         this.height = size;
     }

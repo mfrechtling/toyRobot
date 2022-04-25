@@ -1,6 +1,6 @@
 package com.toyrobot;
 
-import com.toyrobot.exception.CommandException;
+import com.toyrobot.exception.ToyRobotException;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -29,7 +29,7 @@ public class CommandTest
     /**
      * Rigourous Test :-)
      */
-    public void testPlace() throws CommandException {
+    public void testPlace() throws ToyRobotException {
         Command command = new Command();
         command.parseCommand("PLACE 2,2,EAST");
         assertEquals(command.type, CommandType.PLACE);
@@ -39,31 +39,31 @@ public class CommandTest
         assertEquals(command.params[2], Direction.EAST);
     }
 
-    public void testMove() throws CommandException {
+    public void testMove() throws ToyRobotException {
         Command command = new Command();
         command.parseCommand("MOVE");
         assertEquals(command.type, CommandType.MOVE);
     }
 
-    public void testLeft() throws CommandException {
+    public void testLeft() throws ToyRobotException {
         Command command = new Command();
         command.parseCommand("LEFT");
         assertEquals(command.type, CommandType.LEFT);
     }
 
-    public void testRight() throws CommandException {
+    public void testRight() throws ToyRobotException {
         Command command = new Command();
         command.parseCommand("RIGHT");
         assertEquals(command.type, CommandType.RIGHT);
     }
 
-    public void testReport() throws CommandException {
+    public void testReport() throws ToyRobotException {
         Command command = new Command();
         command.parseCommand("REPORT");
         assertEquals(command.type, CommandType.REPORT);
     }
 
-    public void testWeirdFormat() throws CommandException {
+    public void testWeirdFormat() throws ToyRobotException {
         Command command = new Command();
         command.parseCommand("pLaCe    7 , -2           ,SoUtH");
         assertEquals(command.type, CommandType.PLACE);
@@ -73,11 +73,12 @@ public class CommandTest
         assertEquals(command.params[2], Direction.SOUTH);
     }
 
-    public void testBadCommand() throws CommandException {
+    public void testBadCommand() throws ToyRobotException {
         try {
             Command command = new Command();
             command.parseCommand("BadCommand");
-        } catch (CommandException ex) {
+            fail("Successfully parsed bad command");
+        } catch (ToyRobotException ex) {
             assertEquals(ex.getMessage(), "FAILED TO CONVERT STRING COMMAND");
         }
     }

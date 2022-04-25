@@ -1,6 +1,7 @@
 package com.toyrobot;
 
-import com.toyrobot.exception.CommandException;
+import com.toyrobot.exception.ToyRobotException;
+import com.toyrobot.interfaces.ICommandSet;
 
 import java.util.StringTokenizer;
 
@@ -33,7 +34,7 @@ public class Command implements ICommandSet {
         }
     }
 
-    public void parseCommand(String command) throws CommandException {
+    public void parseCommand(String command) throws ToyRobotException {
         StringTokenizer stringTokenizer = new StringTokenizer(command, ":, ");
         try {
             this.type = CommandType.valueOf(stringTokenizer.nextToken().toUpperCase());
@@ -43,8 +44,8 @@ public class Command implements ICommandSet {
                 params[1] = Integer.parseInt(stringTokenizer.nextToken());
                 params[2] = Direction.valueOf(stringTokenizer.nextToken().toUpperCase());
             }
-        } catch (IllegalArgumentException e) {
-            throw new CommandException("FAILED TO CONVERT STRING COMMAND");
+        } catch (Exception ex) {
+            throw new ToyRobotException("FAILED TO CONVERT STRING COMMAND");
         }
     }
 }
