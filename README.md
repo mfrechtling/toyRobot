@@ -40,9 +40,9 @@ This project was implemented using Java 11. Testing utilises (and requires) JUni
 
 ## Use
 
-- To compile, use 'mvn compile'
-- To clean, use 'mvn clean'
-- To test, use 'mvn test'
-- To package, use 'mvn package'
-- To run, use 'mvn exec:java'
+- To compile, use `mvn compile`
+- To clean, use `mvn clean`
+- To test, use `mvn test`
+- To package, use `mvn package`
+- To run, use `mvn exec:java`
 
