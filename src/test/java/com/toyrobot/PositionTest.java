@@ -72,4 +72,19 @@ public class PositionTest
         assertEquals(position.getX(), 4);
         assertEquals(position.getY(), 4);
     }
+
+    public void testBigMoves() {
+        Position position = new Position(0, 0, Direction.NORTH);
+        position.move(4);
+        position.move(3);
+        position.move(2);
+        position.move(1);
+        position.turnRight();
+        position.move(-1);
+        position.move(-2);
+        position.move(-3);
+        position.move(-4);
+        assertEquals(position.getX(), -10);
+        assertEquals(position.getY(), 10);
+    }
 }

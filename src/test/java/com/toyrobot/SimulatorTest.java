@@ -35,14 +35,13 @@ public class SimulatorTest
      * Rigourous Test :-)
      */
     public void testExampleData() throws IOException, ToyRobotException {
-        java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
-        System.setOut(new java.io.PrintStream(out));
-
         File path = new File(new File("").getAbsolutePath() + "/src/test/resources");
         for (File file : Objects.requireNonNull(path.listFiles())) {
+            java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+            System.setOut(new java.io.PrintStream(out));
             FileInputStream input = new FileInputStream(file);
-            Simulator simulator = new Simulator(5, input);
-            String result = out.toString();
+            Simulator simulator = new Simulator(5, new InputStreamReader(input));
+            String result = "";
             while (result.equals("")) {
                 simulator.simulationStep();
                 result = out.toString();

@@ -79,7 +79,7 @@ public class CommandTest
             command.parseCommand("BadCommand");
             fail("Successfully parsed bad command");
         } catch (ToyRobotException ex) {
-            assertEquals(ex.getMessage(), "FAILED TO CONVERT STRING COMMAND");
+            assertEquals(ex.getMessage(), "Failed to convert input string to valid command");
         }
     }
 }

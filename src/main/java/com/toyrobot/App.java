@@ -2,11 +2,6 @@ package com.toyrobot;
 
 import com.toyrobot.exception.ToyRobotException;
 
-import java.io.IOException;
-
-/**
- * Hello world!
- */
 public class App implements Runnable {
 
     public static void main(String[] args) {
@@ -20,12 +15,13 @@ public class App implements Runnable {
     }
 
     public void run() {
-        Simulator simulator = new Simulator();
+        Simulator simulator = new Simulator(5, new InputStreamReader(System.in));
         while (true) {
             try {
                 simulator.simulationStep();
-            } catch (ToyRobotException | IOException cEx) {
-                System.out.println("Command format is invalid");
+            } catch (ToyRobotException e) {
+                System.out.println("Error occurred in current simulation step:");
+                e.printStackTrace();
             }
         }
     }

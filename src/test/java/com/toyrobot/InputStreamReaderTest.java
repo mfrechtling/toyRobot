@@ -37,7 +37,7 @@ public class InputStreamReaderTest
     /**
      * Rigourous Test :-)
      */
-    public void testReadCommands() throws IOException {
+    public void testReadCommands() throws ToyRobotException, IOException {
         File path = new File(new File("").getAbsolutePath() + "/src/test/resources");
         for (File file : Objects.requireNonNull(path.listFiles())) {
             FileInputStream input = new FileInputStream(file);

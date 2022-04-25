@@ -16,6 +16,12 @@ public class Table {
         this.height = size;
     }
 
+    /**
+     * Test if a position is within the boundary of the current table configuration
+     *
+     * @param position the position to test
+     * @return True if the position is valid, otherwise false
+     */
     public boolean positionIsValid(Position position) {
         if (position == null) return false;
         if (position.getX() < minWidth() || position.getX() > maxWidth()) return false;

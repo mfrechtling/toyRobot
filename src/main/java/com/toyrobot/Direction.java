@@ -20,10 +20,20 @@ public enum Direction {
         }
     }
 
+    /**
+     * Rotate the direction to the left
+     *
+     * @return Direction the updated direction
+     */
     public Direction left() {
         return rotate(-1);
     }
 
+    /**
+     * Rotate the direction to the right
+     *
+     * @return Direction the updated direction
+     */
     public Direction right() {
         return rotate(1);
     }

@@ -1,9 +1,7 @@
 package com.toyrobot;
 
 import com.toyrobot.exception.ToyRobotException;
-
-import java.io.IOException;
-import java.io.InputStream;
+import com.toyrobot.interfaces.ICommandReader;
 
 public class Simulator {
     public Table table;
@@ -11,6 +9,7 @@ public class Simulator {
 
     public Simulator() {
         this.table = new Table(5);
+
         this.robot = new ToyRobot();
     }
 
@@ -19,7 +18,7 @@ public class Simulator {
         this.robot = new ToyRobot();
     }
 
-    public Simulator(int size, InputStream input) {
+    public Simulator(int size, ICommandReader input) {
         this.table = new Table(size);
         this.robot = new ToyRobot(input);
     }
@@ -29,12 +28,17 @@ public class Simulator {
         this.robot = new ToyRobot();
     }
 
-    public Simulator(int width, int height, InputStream input) {
+    public Simulator(int width, int height, ICommandReader input) {
         this.table = new Table(width, height);
         this.robot = new ToyRobot(input);
     }
 
-    public void simulationStep() throws IOException, ToyRobotException {
+    /**
+     * Perform a single step in the simulation, results in the ToyRobot executing the next available command
+     *
+     * @throws ToyRobotException
+     */
+    public void simulationStep() throws ToyRobotException {
         Position nextPosition = robot.execNextCommand();
         if (table.positionIsValid(nextPosition)) robot.setPosition(nextPosition);
     }
